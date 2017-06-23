@@ -30,5 +30,6 @@
   
   <modules>
     <module>send-it-json-model</module>
+    <module>send-it-rest</module>
   </modules>
 </project>
