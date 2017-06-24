@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author buehl
  *
  */
-public class EmailRequestModel 
+public class EmailRequest 
 {
 	@JsonProperty("from")
 	private String from;
