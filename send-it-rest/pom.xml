@@ -18,4 +18,17 @@
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
   </dependencies>
+  
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.springframewoork.boot</groupId>
+  			<artifactId>spring-boot-maven-plugin</artifactId>
+  			<version>1.5.4.RELEASE</version>
+  			<configuration>
+  				<executable>true</executable>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
 </project>
