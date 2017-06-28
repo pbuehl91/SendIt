@@ -35,5 +35,6 @@
   <modules>
     <module>send-it-json-model</module>
     <module>send-it-rest</module>
+    <module>send-it-service</module>
   </modules>
 </project>

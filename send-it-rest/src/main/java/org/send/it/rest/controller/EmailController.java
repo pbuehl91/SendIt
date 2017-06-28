@@ -3,10 +3,17 @@
  */
 package org.send.it.rest.controller;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
+import org.send.it.rest.constant.RestConstants;
+import org.send.it.service.SendItService;
+import org.send.ita.service.impl.SendItServiceImpl;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.send.it.rest.constant.RestConstants;
 
 /**
  * @author buehl
@@ -16,8 +23,24 @@ import org.send.it.rest.constant.RestConstants;
 public class EmailController 
 {
 	@RequestMapping(value = RestConstants.BASE_URL + RestConstants.TEST, method = RequestMethod.GET)
-    public String test() 
+    public ResponseEntity<String> sendEmail()
 	{
-        return "You found me :)";
-    }
+		//TODO Make bean configuration
+		SendItService service = new SendItServiceImpl();
+		
+		try
+		{
+			service.sendEmail("paulink@live.com", "patrick.buehl91@gmail.com", "Hecarim", "Hecarim passive");
+		}
+		catch(AddressException ae)
+		{
+			return new ResponseEntity<String>(ae.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		catch(MessagingException me)
+		{
+			return new ResponseEntity<String>(me.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return new ResponseEntity<String>("Sent email", HttpStatus.CREATED);
+	}
 }
