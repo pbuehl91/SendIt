@@ -8,7 +8,7 @@ import javax.mail.internet.AddressException;
 
 import org.send.it.rest.constant.RestConstants;
 import org.send.it.service.SendItService;
-import org.send.ita.service.impl.SendItServiceImpl;
+import org.send.it.service.impl.SendItServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +27,11 @@ public class EmailController
 	{
 		//TODO Make bean configuration
 		SendItService service = new SendItServiceImpl();
+		String[] to = {"britlink99@gmail.com"};
 		
 		try
 		{
-			service.sendEmail("paulink@live.com", "patrick.buehl91@gmail.com", "Hecarim", "Hecarim passive");
+			service.sendEmail(to, "patrick.buehl91@gmail.com", "babasdkofja!", "Hecarim", "Hecarim passive");
 		}
 		catch(AddressException ae)
 		{

@@ -12,5 +12,7 @@ import javax.mail.internet.AddressException;
  */
 public interface SendItService 
 {
-	public void sendEmail(String to, String from, String subject, String text) throws AddressException, MessagingException;
+	public void sendEmail(String[] to, String from, String password, String subject, String text) throws AddressException, MessagingException;
+	
+	public void sendEmail(String[] to, String[] cc, String[] bcc, String from, String password, String subject, String text) throws AddressException, MessagingException;
 }
