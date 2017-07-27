@@ -5,6 +5,9 @@ package org.send.it.service.util;
 
 import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+
 /**
  * @author buehl
  *
@@ -21,5 +24,15 @@ public class EmailUtil
 		properties.put("mail.smtp.starttls.required", "true");
 		
 		return properties;
+	}
+	
+	public static Authenticator authenticate(String user, String password)
+	{
+		return new Authenticator() {
+			//override the getPasswordAuthentication method
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(user, password);
+			}
+		};
 	}
 }

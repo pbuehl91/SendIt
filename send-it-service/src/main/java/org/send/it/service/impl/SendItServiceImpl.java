@@ -9,7 +9,6 @@ import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -30,16 +29,8 @@ public class SendItServiceImpl implements SendItService
 			throws AddressException, MessagingException {  
 		
 		  
-		Properties properties = EmailUtil.generateSmtpProperties();
-		
-		//Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-		
-		Authenticator auth = new Authenticator() {
-			//override the getPasswordAuthentication method
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("patrick.buehl91@gmail.com", "PBBlrb123!");
-			}
-		};
+		Properties properties = EmailUtil.generateSmtpProperties();	
+		Authenticator auth = EmailUtil.authenticate(from, password);
 		
 		Session mailSession = Session.getInstance(properties, auth);
 		mailSession.setDebug(false);
